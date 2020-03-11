@@ -7,17 +7,14 @@ class DBTestCase extends TestCase
     /*
      * Bootstrap the application
      */
-    public function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 
-        $this->artisan = $this->app->make('Illuminate\Contracts\Console\Kernel');
+        $this->loadMigrationsFrom(__DIR__. '/migrations');
 
-        $this->artisan('migrate', [
-                '--database' => 'testbench',
-                '--realpath' => realpath(__DIR__.'/migrations'),
-            ]
-        );
+        $this->artisan('migrate', ['--database' => 'sqlite']
+        )->run();
     }
 
     /**
@@ -28,8 +25,8 @@ class DBTestCase extends TestCase
     protected function getEnvironmentSetUp($app)
     {
         // Setup default database to use sqlite :memory:
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
+        $app['config']->set('database.default', 'sqlite');
+        $app['config']->set('database.connections.sqlite', [
             'driver' => 'sqlite',
             'database' => ':memory:',
             'prefix' => '',

@@ -718,7 +718,7 @@ class NestableService
     {
         if ($this->config['generate_url']) {
             if ($this->route) {
-                if (array_has($this->route, 'callback')) {
+                if (\Illuminate\Support\Arr::has($this->route, 'callback')) {
                     if(is_array($parent)) $parent = (object)$parent;
                     return call_user_func_array($this->route['callback'], [$path, $label, $parent]);
                 } else {

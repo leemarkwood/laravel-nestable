@@ -2,15 +2,16 @@
 
 namespace Nestable\Tests;
 
-class MacrosTraitTest extends TestCase
+class MacrosTraitTest extends DBTestCase
 {
     protected $categories;
 
-    public function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 
         $this->categories = $this->dummyData();
+
     }
 
     public function testMacro()

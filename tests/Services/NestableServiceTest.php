@@ -2,15 +2,16 @@
 
 namespace Nestable\Tests\Services;
 
+use Nestable\Tests\DBTestCase;
 use RecursiveIteratorIterator;
 use RecursiveArrayIterator;
 use Nestable\Tests\TestCase;
 
-class NestableServiceTest extends TestCase
+class NestableServiceTest extends DBTestCase
 {
     protected $categories;
 
-    public function setUp()
+    protected function setUp() : void
     {
         parent::setUp();
 
